@@ -1,0 +1,212 @@
+@mixin flex($align-items: center, $justify-content: center) {
+  display: flex;
+  align-items: $align-items;
+  justify-content: $justify-content;
+}
+$darck-color: #171717;
+$gray-color: #444444;
+$white-color: #ededed;
+$blue-color: #3db2ff;
+$red-color: #ff0000bd;
+
+*{
+  box-sizing: border-box;
+}
+.todo {
+  width: 100%;
+  max-width: 992px;
+  margin: 100px auto;
+  @include flex();
+  flex-direction: column;
+  &__form {
+    margin-top: 20px;
+    width: 700px;
+    border: 1px solid $darck-color;
+    border-radius: 5px;
+    position: relative;
+    height: 50px;
+    overflow: hidden;
+    &-input {
+      width: 85%;
+      outline: none;
+      margin: 0;
+      height: 100%;
+      border: none;
+      padding: 0 30px 0 10px;
+    }
+    &-icon {
+      position: absolute;
+      right: 0;
+      bottom: 0;
+      height: 50px;
+      width: 50px;
+      font-size: 20px;
+      font-weight: 500;
+      border-radius: 5px;
+      background: none;
+      border: none;
+      cursor: pointer;
+      @include flex();
+      transform: scale(1);
+      transition: 0.5s ease;
+      &:hover {
+        color: $darck-color;
+        transform: scale(1.3);
+        background-color: $blue-color;
+        color: $white-color;
+      }
+    }
+  }
+  &__list {
+    width: 700px;
+    margin-top: 10px;
+    &-item {
+      @include flex(center, space-between);
+      border-radius: 5px;
+      padding: 0 10px;
+      border: 1px solid;
+      margin-top: 5px;
+      & > p {
+        width: 85%;
+      }
+      & > p.delete {
+        text-decoration: line-through;
+      }
+    }
+    &-item.select{
+      background: $darck-color;
+      & > p {
+        color: $white-color;
+      }
+      button {
+        background: $white-color;
+        color: $darck-color;
+        transition: all .5s ease;
+        &:hover{
+          background: $blue-color!important;
+          &:last-child{
+            background: $red-color!important;
+          }
+        }
+      }
+    }
+    &-icons button {
+      background: none;
+      outline: none;
+      border-radius: 5px;
+      width: 40px;
+      border: 1px solid $darck-color;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all ease 0.3s;
+      &:hover {
+        color: $white-color;
+        border-color: currentColor;
+      }
+      &:nth-child(1) {
+        margin-right: 5px;
+      }
+    }
+    &-checked:hover {
+      background-color: $blue-color;
+    }
+    &-trash:hover {
+      background-color: $red-color;
+    }
+  }
+  &__filter {
+    width: 700px;
+    @include flex(center, space-between);
+    border: 1px solid $darck-color;
+    margin-top: 10px;
+    border-radius: 5px;
+    transform: translateY(-65px);
+    transition: transform .4s ease;
+    &-list {
+      @include flex();
+    }
+    &-item {
+      padding: 10px;
+      cursor: pointer;
+      > button {
+        padding: 5px 10px;
+        background: none;
+        outline: none;
+        border: 1px solid $darck-color;
+        border-radius: 5px;
+        cursor: pointer;
+        transition: all 0.3s ease;
+        &:hover {
+          color: $white-color;
+          background: $blue-color;
+          border-color: currentColor;
+        }
+      }
+    }
+    &-item.change {
+      border-radius: 10rem;
+      transition: all .5s ease;
+      &:hover {
+        background: $blue-color;
+        color: white;
+      }
+    }
+    &-warning:hover {
+      background: $red-color !important;
+    }
+  }
+  &__change{
+    width: 700px;
+    @include flex(center, space-between);
+    margin-top: 20px;
+    border: 2px solid $blue-color;
+    border-radius: 5px;
+    padding: 5px 0;
+    transform: translateX(-200%);
+    transition: transform .4s linear;
+    &-input{
+      width: 80%;
+      padding: 10px 10px;
+      border: none;
+      outline: none;
+    }
+    button {
+      background: none;
+      outline: none;
+      border-radius: 5px;
+      width: 40px;
+      border: 1px solid $darck-color;
+      height: 40px;
+      font-size: 20px;
+      cursor: pointer;
+      transition: all ease 0.3s;
+      &:hover {
+        color: $white-color;
+        border-color: currentColor;
+      }
+      &:nth-child(2) {
+        margin-right: 10px;
+        margin-left: 5px;
+      }
+    }
+    &-close:hover{
+      background-color: $red-color!important;
+    }
+    &-confirm:hover{
+      background-color: #42d528d6!important;
+    }
+  }
+  &__change.active{
+    display: block;
+    transform: translateX(0);
+  }
+}
+.filter.active{
+  .todo__filter{
+    transform: translateY(0);
+  }
+  .todo__change{
+    transform: translateX(0);
+  }
+}
