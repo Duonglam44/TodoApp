@@ -1,14 +1,13 @@
 import React, { useRef } from 'react'
 import ChangeTodo from './ChangeTodo'
 
-const FilterTodo = ({ todo, setTodo, status, setStatus,clearDoneHandler }) => {
+const FilterTodo = ({ todo, setTodo, status, setStatus, clearDoneHandler }) => {
 
      const statusHandler = (e) => {
           setStatus(e.target.value)
      }
      const refFilter = useRef(null)
      const changeHandler = () => refFilter.current.classList.toggle('active')
-
 
      return (
           <div className='filter' ref={refFilter}>
